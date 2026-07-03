@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1800" viewBox="0 0 1800 1800">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#17202a"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 Z" fill="#b33333"/>
+    </marker>
+    <style>
+      text { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #17202a; }
+      .title { font-size: 34px; font-weight: 800; }
+      .subtitle { font-size: 19px; fill: #647282; }
+      .lane-title { font-size: 24px; font-weight: 800; }
+      .box-title { font-size: 19px; font-weight: 800; }
+      .box-sub { font-size: 15px; fill: #405060; }
+      .small { font-size: 15px; fill: #405060; }
+      .tiny { font-size: 13px; fill: #647282; }
+      .lane { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 2; rx: 18; }
+      .service-lane { fill: #ffffff; stroke: #d0d7de; stroke-width: 2; rx: 18; }
+      .box { fill: #ffffff; stroke: #647282; stroke-width: 2; rx: 14; }
+      .teal { fill: #e9f6f5; stroke: #256f6c; }
+      .green { fill: #e9f6ef; stroke: #20734d; }
+      .yellow { fill: #fff5d8; stroke: #936d16; }
+      .red { fill: #ffecec; stroke: #b33333; }
+      .blue { fill: #edf4ff; stroke: #3366aa; }
+      .db { fill: #eef2f6; stroke: #17202a; }
+      .arrow { stroke: #17202a; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .arrow-red { stroke: #b33333; stroke-width: 3; fill: none; marker-end: url(#arrow-red); stroke-dasharray: 7 7; }
+      .arrow-yellow { stroke: #936d16; stroke-width: 3; fill: none; marker-end: url(#arrow); stroke-dasharray: 7 7; }
+      .label { font-size: 13px; fill: #647282; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1800" fill="#ffffff"/>
+
+  <text x="70" y="62" class="title">AI Behavior Release Manager - Workflow and Service Layout</text>
+  <text x="72" y="98" class="subtitle">Eval compares candidate behavior to production; the Release Gate decides if Rollout Service may advance it through QA/A-B and progressive production rollout.</text>
+
+  <rect x="55" y="130" width="1690" height="365" class="lane"/>
+  <text x="82" y="170" class="lane-title">Behavior Release Pipeline</text>
+
+  <g id="pipeline">
+    <rect x="85" y="220" width="170" height="92" class="box"/>
+    <text x="170" y="257" text-anchor="middle" class="box-title">Candidate Pool</text>
+    <text x="170" y="283" text-anchor="middle" class="box-sub">draft prompt vN</text>
+
+    <rect x="295" y="220" width="170" height="92" class="box teal"/>
+    <text x="380" y="257" text-anchor="middle" class="box-title">Offline Eval</text>
+    <text x="380" y="283" text-anchor="middle" class="box-sub">candidate vs prod</text>
+
+    <rect x="505" y="220" width="170" height="92" class="box blue"/>
+    <text x="590" y="257" text-anchor="middle" class="box-title">Release Gate</text>
+    <text x="590" y="283" text-anchor="middle" class="box-sub">pass / warn / block</text>
+
+    <rect x="715" y="220" width="170" height="92" class="box yellow"/>
+    <text x="800" y="257" text-anchor="middle" class="box-title">Local A/B</text>
+    <text x="800" y="283" text-anchor="middle" class="box-sub">0% prod exposure</text>
+
+    <rect x="925" y="220" width="170" height="92" class="box teal"/>
+    <text x="1010" y="257" text-anchor="middle" class="box-title">QA / A-B</text>
+    <text x="1010" y="283" text-anchor="middle" class="box-sub">fixture + holdout</text>
+
+    <rect x="1135" y="220" width="170" height="92" class="box green"/>
+    <text x="1220" y="257" text-anchor="middle" class="box-title">Prod Canary</text>
+    <text x="1220" y="283" text-anchor="middle" class="box-sub">10% rollout</text>
+
+    <rect x="1345" y="220" width="170" height="92" class="box green"/>
+    <text x="1430" y="257" text-anchor="middle" class="box-title">Prod Ramp</text>
+    <text x="1430" y="283" text-anchor="middle" class="box-sub">50% rollout</text>
+
+    <rect x="1555" y="220" width="170" height="92" class="box green"/>
+    <text x="1640" y="257" text-anchor="middle" class="box-title">Production</text>
+    <text x="1640" y="283" text-anchor="middle" class="box-sub">100% + monitor</text>
+
+    <path d="M258 266 H291" class="arrow"/>
+    <path d="M468 266 H501" class="arrow"/>
+    <path d="M678 266 H711" class="arrow"/>
+    <path d="M888 266 H921" class="arrow"/>
+    <path d="M1098 266 H1131" class="arrow"/>
+    <path d="M1308 266 H1341" class="arrow"/>
+    <path d="M1518 266 H1551" class="arrow"/>
+
+    <rect x="505" y="390" width="210" height="58" class="box yellow"/>
+    <text x="610" y="426" text-anchor="middle" class="box-title">Needs Tuning</text>
+    <path d="M590 315 V386" class="arrow-yellow"/>
+
+    <rect x="745" y="390" width="180" height="58" class="box red"/>
+    <text x="835" y="426" text-anchor="middle" class="box-title">Blocked</text>
+    <path d="M675 300 C720 335, 775 360, 815 386" class="arrow-red"/>
+
+    <rect x="1220" y="390" width="290" height="58" class="box red"/>
+    <text x="1365" y="426" text-anchor="middle" class="box-title">Hold / Rollback</text>
+    <path d="M1440 315 C1420 352, 1395 375, 1375 388" class="arrow-red"/>
+  </g>
+
+  <rect x="55" y="540" width="1160" height="500" class="service-lane"/>
+  <text x="82" y="580" class="lane-title">Logical Service Layout</text>
+
+  <g id="services">
+    <rect x="90" y="645" width="165" height="70" class="box teal"/>
+    <text x="172" y="688" text-anchor="middle" class="box-title">Web UI</text>
+
+    <rect x="305" y="645" width="175" height="70" class="box teal"/>
+    <text x="392" y="688" text-anchor="middle" class="box-title">App / API</text>
+
+    <rect x="535" y="645" width="185" height="70" class="box"/>
+    <text x="628" y="678" text-anchor="middle" class="box-title">Eval Engine</text>
+    <text x="628" y="702" text-anchor="middle" class="box-sub">same suite/snapshot</text>
+
+    <rect x="775" y="645" width="185" height="70" class="box blue"/>
+    <text x="868" y="678" text-anchor="middle" class="box-title">Release Gate</text>
+    <text x="868" y="702" text-anchor="middle" class="box-sub">policy decision</text>
+
+    <rect x="1015" y="645" width="165" height="70" class="box"/>
+    <text x="1098" y="678" text-anchor="middle" class="box-title">Rollout Svc</text>
+    <text x="1098" y="702" text-anchor="middle" class="box-sub">stage owner</text>
+
+    <rect x="305" y="785" width="175" height="70" class="box"/>
+    <text x="392" y="817" text-anchor="middle" class="box-title">Feedback Store</text>
+    <text x="392" y="841" text-anchor="middle" class="box-sub">local + prod weights</text>
+
+    <rect x="535" y="785" width="185" height="70" class="box"/>
+    <text x="628" y="817" text-anchor="middle" class="box-title">Prompt Versions</text>
+    <text x="628" y="841" text-anchor="middle" class="box-sub">v1, v2 snapshots</text>
+
+    <rect x="775" y="785" width="185" height="70" class="box"/>
+    <text x="868" y="817" text-anchor="middle" class="box-title">Audit Log</text>
+    <text x="868" y="841" text-anchor="middle" class="box-sub">who / what / why</text>
+
+    <rect x="435" y="940" width="455" height="55" class="box db"/>
+    <text x="662" y="975" text-anchor="middle" class="box-title">SQLite source of truth</text>
+
+    <path d="M258 680 H301" class="arrow"/>
+    <path d="M483 680 H531" class="arrow"/>
+    <path d="M723 680 H771" class="arrow"/>
+    <path d="M963 680 H1011" class="arrow"/>
+    <text x="798" y="625" class="label">gate pass calls rollout svc</text>
+
+    <path d="M392 720 V780" class="arrow"/>
+    <path d="M628 720 V780" class="arrow"/>
+    <path d="M868 720 V780" class="arrow"/>
+    <path d="M392 858 C440 915, 505 942, 575 940" class="arrow"/>
+    <path d="M628 858 V936" class="arrow"/>
+    <path d="M868 858 C810 915, 745 942, 690 940" class="arrow"/>
+  </g>
+
+  <rect x="1260" y="540" width="485" height="500" class="service-lane"/>
+  <text x="1290" y="580" class="lane-title">Gate and Rollout Semantics</text>
+
+  <text x="1292" y="630" class="box-title">Release Gate</text>
+  <text x="1310" y="662" class="small">- runs after eval, before rollout</text>
+  <text x="1310" y="690" class="small">- critical regressions block</text>
+  <text x="1310" y="718" class="small">- stale / partial / non-comparable evals block</text>
+  <text x="1310" y="746" class="small">- warn state sends candidate to Needs Tuning</text>
+
+  <text x="1292" y="805" class="box-title">Rollout Service</text>
+  <text x="1310" y="837" class="small">- owns stage transitions after gate pass</text>
+  <text x="1310" y="865" class="small">- local A/B and QA/A-B have 0% prod exposure</text>
+  <text x="1310" y="893" class="small">- canary/ramp use production feedback health</text>
+  <text x="1310" y="921" class="small">- bad prod feedback warns or rolls back</text>
+
+  <text x="1292" y="980" class="box-title">MVP honesty</text>
+  <text x="1310" y="1012" class="small">- deterministic mock model and evaluator</text>
+  <text x="1310" y="1040" class="small">- seeded feedback, not real traffic router</text>
+  <text x="1310" y="1068" class="small">- production rollout model is represented, not deployed</text>
+
+  <text x="70" y="1115" class="tiny">Current implementation: Candidate Pool -> Local A/B -> QA/A-B -> Prod Canary 10% -> Prod Ramp 50% -> Production. Release Gate is the decision boundary between eval evidence and rollout actions.</text>
+</svg>
